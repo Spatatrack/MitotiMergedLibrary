@@ -1,0 +1,121 @@
+//BASE
+"done":"done";
+"edit":"edit";
+
+"WhiteNoise" = "White Noise";
+"RainNoise"  = "Rain";
+"WavesNoise" = "Waves";
+"FanNoise"   = "Fan";
+"PhoneNoise" = "Hairdryer";
+"TrainNoise" = "Train";
+"WaterNoise" = "Water";
+"PinkNoise"  = "Pink";
+
+"Select the Podcast"="Select the Podcast";
+"Select the Noise"="Select the Noise";
+
+"No Podcast found"="No Podcast found";
+"Go to Podcast App and download some Poscasts"="Or no episode found. Go to Podcast App and download some Poscasts or select a different Podcast Album";
+
+"Go now"="Go now";
+"Cancel"="Cancel";
+
+"MSG_GO_ALLOW_MUSIC_PERMISSION"="Click to go to the app settings";
+
+//Purchase
+"Purchases are disabled in your device!"="Purchases are disabled in your device!";
+"Restore Success"="Restore Success";
+"You've successfully restored your purchase!"="You've successfully restored your purchase!";
+"Purchase Success"="Purchase Success";
+"You've successfully purchased"="You've successfully purchased";
+"Purchase failed!"="Purchase failed!";
+"Restore purchase"="Restore purchase";
+"day"="day";
+"days"="days";
+"week"="week";
+"weeks"="weeks";
+"month"="month";
+"months"="months";
+"year"="year";
+"years"="years";
+"loading"="loading...";
+"canceled"="canceled";
+"Product error"="Product error";
+"Try again later"="Try again later";
+
+
+"Error"="Error";
+"Impossible to read podcast, try to download it again"="Impossible to read podcast, try to download it again";
+
+//INFO VIEW
+
+"next"="next";
+
+"🤦🏻‍♀️" = "🤦🏻‍♀️";
+
+"click here and go setting" = "click here and go setting";
+
+"Go to Podcasts App Setting" = "Go to Podcasts App Setting";
+
+//INFO VIEW TITLE
+"InfoViewTitle1" = "Hello!";
+"InfoViewTitle2" = "Download Podcasts";
+"InfoViewTitle3" = "Settings Podcasts App";
+"InfoViewTitle4" = "Noise during sleeping";
+"InfoViewTitle5" = "Well done";
+
+"oops!" = "oops!";
+
+
+//INFO VIEW MESSAGES
+"InfoViewMessage1" = "These few steps will help you get the most out of this application!";
+"InfoViewMessage2" = "Download your favorite podcasts from Apple Podcast App.";
+"InfoViewMessage3" = "Open Apple Podcasts app settings and make sure to set automatic download on";
+"InfoViewMessage4" = "White noise works by reducing the difference between background sounds and a \"peak\" sound, like a door slamming, giving you a better chance to sleep through it undisturbed. If you have difficulty falling asleep or staying asleep, creating a constant ambient sound could help mask activity from inside and outside the house.\nSource: http://sleepfoundation.org";
+"InfoViewMessage5" = "To be able to read Podcasts, allow access to Apple Music.\nSet alarm clock and push start alarm every time you want wake up with Podcast!";
+
+//INFO VIEW BUTTON TEXT
+"InfoViewButton2" = "Go to podcast app and download your podcasts";
+"InfoViewButton4" = "Choose noise sound";
+"InfoViewButton5" = "awesome!";
+
+
+
+
+
+//ALARM VIEW
+"Alarm"="Sveglia";
+"alarm off" = "alarm off";
+"alarm on" = "alarm on";
+"Volume"="Volume";
+"Cancel alarm"="Cancel alarm";
+"Charge me"="Charge me";
+"Put me face down"="Put me face down";
+
+//SETTINGS
+"Settings"="Impostazioni";
+"Play-recent-first" = "Play recent first";
+"Only unheard episodes" = "Only unheard episodes";
+"Noise volume"="Noise volume";
+"Podcast volume"="Podcast volume";
+
+//ALARM VIEW
+"Podcast title"="Click the photo to choose the podcast";
+
+
+///MitotiM
+/* No comment provided by engineer. */
+"tips or issues" = "tips or issues";
+/* settings - MitotiM: contattai */
+"Contact us" = "Contact us";
+/* No comment provided by engineer. */
+"Rate Now" = "Rate Now!";
+/* settings - MitotiM: votaci */
+"Rate us!" = "Rate us!";
+/* No comment provided by engineer. */
+"please, support our work" = "please, support our work";
+/* No comment provided by engineer. */
+"RATE_REMEMBER_BUTTON"="Remember me later";
+
+
+

@@ -1,0 +1,117 @@
+//BASE
+
+//
+"done":"fatto";
+"edit":"modifica";
+
+"WhiteNoise" = "Rumore Bianco";
+"RainNoise"  = "Pioggia";
+"WavesNoise" = "Onde";
+"FanNoise"   = "Ventilatore";
+"PhoneNoise" = "Asciuga capelli";
+"TrainNoise" = "Treno";
+"WaterNoise" = "Acqua Corrente";
+"PinkNoise"  = "Rumore Rosa";
+
+"Select the Podcast"="Seleziona il Podcast";
+"Select the Noise"="Seleziona il rumore";
+
+"No Podcast found"="Nessun Podcast trovato";
+"Go to Podcast App and download some Poscasts"="Oppure hai ascoltato tutti gli episodi, apri l'app Podcast di Apple e scarica qualche Poscast o seleziona un podcast differente";
+
+"Go now"="Vai";
+"Cancel"="Annulla";
+
+"MSG_GO_ALLOW_MUSIC_PERMISSION"="Click per andare nelle impostazioni dell'app";
+
+//Purchase
+"Purchases are disabled in your device!"="Gli acquisti sono disabilitati su questo dispositivo";
+"Restore Success"="Rispristino completato";
+"You've successfully restored your purchase!"="Rispristino degli acquisti completato con successo";
+"Purchase Success"="Acquisto completato";
+"You've successfully purchased"="Acquisto completato con successo";
+"Purchase failed!"="Acquisto annullato";
+"Restore purchase"="Ripristina acquisti precedenti";
+"day"="giorno";
+"days"="giorni";
+"week"="settimana";
+"weeks"="settimane";
+"month"="mese";
+"months"="mesi";
+"year"="anno";
+"years"="anni";
+"loading"="carico...";
+"canceled"="annullato";
+"Product error"="Errore nel caricare il prodotto";
+"Try again later"="Riprova più tardi3";
+
+"Error"="Errore";
+"Impossible to read podcast, try to download it again"="Impossibile leggere il podcast, prova a scaricarlo di nuovo";
+
+//INFO VIEW
+"next" = "continua";
+
+"🤦🏻‍♀️" = "🤦🏻‍♀️";
+
+"click here and go setting" = "clicca qui e vai a setting";
+
+"Go to Podcasts App Setting" = "Vai alle impostazioni dell'app Podcasts";
+
+//INFO VIEW TITLE
+"InfoViewTitle1" = "Ciao!";
+"InfoViewTitle2" = "Scarica Podcasts";
+"InfoViewTitle3" = "Impostazioni Podcasts App";
+"InfoViewTitle4" = "Rumore durante il sonno";
+"InfoViewTitle5" = "Ben fatto!";
+
+"oops!" = "oops!";
+
+//INFO VIEW MESSAGES
+"InfoViewMessage1" = "Segui questi semplici passi per ottenere il massimo da questa app!";
+"InfoViewMessage2" = "Scaricati i tuoi podcast preferiti dalla app Podcast di Apple.";
+"InfoViewMessage3" = "Assicurati di mettere download automatici dalle impostazioni dell'app Podcasts";
+"InfoViewMessage4" = "Il rumore bianco funziona riducendo la differenza tra i suoni di sottofondo ed un suono acuto, come una porta che sbatte, dandoti una migliore possibilità di dormire indisturbato. Se avete difficoltà ad addormentarvi o a rimanere addormentati, creare un suono ambientale costante potrebbe aiutare a mascherare i disturbi dall'interno e dall'esterno della casa.\nFonte: http://sleepfoundation.org";
+"InfoViewMessage5" = "Per leggere i podcast, dovresti dare il consenso a leggere i contenuti da Apple Music.\nRicorda di settare l'allarme poco prima di andare a dormire tutte le volte che vuoi svegliarti con il tuo podcast preferito!";
+
+//INFO VIEW BUTTON TEXT
+"InfoViewButton2" = "Vai all'app Podcasts e scarica i podcast";
+"InfoViewButton4" = "Scegli il rumore";
+"InfoViewButton5" = "magnifico!";
+
+
+//ALARM VIEW
+"Alarm"="Sveglia";
+"alarm off" = "sveglia disattivata";
+"alarm on" = "sveglia attiva";
+"Volume"="Volume";
+"Cancel alarm"="Annulla sveglia";
+"Charge me"="mettimi in carica";
+"Put me face down"="Mettimi faccia in giu";
+
+//SETTINGS
+"Settings"="Impostazioni";
+"Play-recent-first" = "Play recent first";
+"Only unheard episodes" = "Solo puntate mai ascoltate";
+"Noise volume"="Volume rumore";
+"Podcast volume"="Volume podcast";
+"Play after (seconds)"="Play dopo (secondi)";
+"Play after (seconds)"="Play after (seconds)";
+
+//ALARM VIEW
+"Podcast title"="Clicca la foto per scegliere il podcast";
+
+///MitotiM
+/* No comment provided by engineer. */
+"tips or issues" = "suggerimenti o problemi";
+/* settings - MitotiM: contattai */
+"Contact us" = "Contattaci";
+/* No comment provided by engineer. */
+"Rate Now" = "Votaci!";
+/* settings - MitotiM: votaci */
+"Rate us!" = "Votaci!";
+/* No comment provided by engineer. */
+"please, support my work" = "per favore, supporta il mio lavoro";
+/* No comment provided by engineer. */
+"RATE_REMEMBER_BUTTON"="Ricordamelo";
+
+
