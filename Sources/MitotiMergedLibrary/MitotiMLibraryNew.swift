@@ -2,7 +2,7 @@ import Foundation
 
 //https://stackoverflow.com/questions/40436895/how-to-read-plist-without-using-nsdictionary-in-swift
 
-public static func helloFromVersion1() -> String {
+public func helloFromVersion1() -> String {
     return "Hello from MitotiMLibraryNew 1.0.0" //ciao
 }
 //pippo
@@ -17,7 +17,7 @@ public struct PippoStruct {
 //
 //    }
     
-    public static var staticVeriable: String = NSLocalizedString("RATE_REMEMBER_BUTTON", tableName: "MTMLocalizable", bundle: .module, comment: "")
+    public static let staticVeriable: String = NSLocalizedString("RATE_REMEMBER_BUTTON", tableName: "MTMLocalizable", bundle: .module, comment: "")
   
 }
 

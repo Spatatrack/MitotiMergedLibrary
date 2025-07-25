@@ -15,15 +15,21 @@ import SpriteKit
     SETTARE AppConfiguration.AppleStore.numWinToOpenReview
     E CHIAMARE OGNI VOLTA CHE SI VUOLE FARE IL CHECK
     //NORMAL
-        AppStoreReview.checkStore(senderView: self)
+        Task {
+            await AppStoreReview.checkStore(senderView: self)
+        }
     //SPRITEKIT
-        AppStoreReview.checkStore(sender: self.view!)
+        Task {
+            await AppStoreReview.checkStore(senderSKView: self.view!)
+        }
     //SWIFTUI
         if let viewController = UIApplication.shared.windows.first?.rootViewController {
-            AppStoreReview.checkStore(senderView: viewController)
+            Task {
+                await AppStoreReview.checkStore(senderView: viewController)
+            }
         }
  
- Button(action: {AppleStore.openRateMe()}) {
+ Button(action: { Task { await AppleStore.openRateMe() } }) {
      HStack {
          Text(AppStoreReview.titleRateUs)
          Spacer()
@@ -39,7 +45,7 @@ import SpriteKit
 /// diretto AppleStore.openRateMe()
 /// in base a aperture AppStoreReview.checkStoreToReview()
 /**
- ///Button(action: {AppleStore.openRateMe()}) {
+ ///Button(action: { Task { await AppleStore.openRateMe() } }) {
  HStack {
      Text(AppStoreReview.titleRateUs)
      Spacer()
@@ -82,12 +88,12 @@ public class AppStoreReview {
         }
     }
     
-    ///Apri apple store review e Setta nsuserdefaul come già reviewed/
-    public static func openAppStoreReview () {
+    ///Apri apple store review e Setta nsuserdefaul come già reviewed
+    @MainActor public static func openAppStoreReview() async {
         let RATED: String = Bundle.main.object(forInfoDictionaryKey:kCFBundleVersionKey as String) as! String
         UserDefaults.standard.set("yes", forKey: RATED)
         UserDefaults.standard.synchronize()
-        AppleStore.openRateMe()
+        await AppleStore.openRateMe()
     }
     
     ///Setta nsuserdefault come non reviewed
@@ -97,9 +103,9 @@ public class AppStoreReview {
         UserDefaults.standard.synchronize()
     }
     
-    //iOS>10
-    ///Check If number is grater then setting, if yes show alert to rate
-    public static func checkStoreToReview() {
+    /// Check If number is greater than setting, if yes show alert to rate
+    /// This function is async and must be called from the main actor.
+    @MainActor public static func checkStoreToReview() async {
         
         AppStoreReview.numOpen += 1
         
@@ -113,12 +119,13 @@ public class AppStoreReview {
         
         // Controlla se è il momento di mostrare la richiesta di recensione
         if (numOpen == numOpenToOpenReview) || (numOpen >= numOpenToOpenReview && (numOpen - numOpenToOpenReview) % recurrenceOpenReview == 0) {
-            AppStoreReview.openAppStoreReview()
+            await AppStoreReview.openAppStoreReview()
         }
     }
-    //iOS<10
-    ///Check If number is grater then setting, if yes show alert to rate
-    @objc static func checkStore(senderView: UIViewController) {
+    
+    /// Check If number is greater than setting, if yes show alert to rate
+    /// This function is async and must be called from the main actor.
+    @MainActor public static func checkStore(senderView: UIViewController) async {
         
         AppStoreReview.numOpen += 1
         
@@ -128,12 +135,9 @@ public class AppStoreReview {
         
         if isRated == false {
             
-         
-            
             let numOpenToOpenReview = MitotiMLibraryNew.numToOpenReview
 
             if numOpen >= numOpenToOpenReview {
-                
                 
                 // create the alert
                 let alert = UIAlertController(title: titleRateUs,
@@ -142,29 +146,38 @@ public class AppStoreReview {
                 
                 // add the actions (buttons)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Rate Now", tableName: "MTMLocalizable", bundle: .module, comment: ""), style: UIAlertAction.Style.default, handler: {(alertAction) -> Void in
-                        //print("Vota adesso")
-                        AppStoreReview.openAppStoreReview()
+                        Task {
+                            await AppStoreReview.openAppStoreReview()
+                        }
                 }))
-                /*
-                alert.addAction(UIAlertAction(title: NSLocalizedString("No, thanks",   comment:""), style: UIAlertAction.Style.default, handler: {(alertAction) -> Void in
-                    UserDefaults.standard.set("yes", forKey: RATED)
-                    UserDefaults.standard.synchronize()}))
-                */
+                
                 alert.addAction(UIAlertAction(title: NSLocalizedString("RATE_REMEMBER_BUTTON", tableName: "MTMLocalizable", bundle: .module, comment: ""), style: UIAlertAction.Style.default, handler: {(alertAction) -> Void in
                     self.numOpen = 0
                 }))
                 
                 // show the alert
-                senderView.present(alert, animated: true, completion: nil)
+                await senderView.presentAsync(alert, animated: true)
             }
         }
     }
     
-    ///Check If number is grater then setting, if ies show alert to rate
-    public static func checkStore(senderSKView: SKView) {
-        AppStoreReview.checkStore(senderView: senderSKView.window!.rootViewController!)
+    /// Async version of checkStore for SKView
+    @MainActor public static func checkStore(senderSKView: SKView) async {
+        if let rootVC = senderSKView.window?.rootViewController {
+            await checkStore(senderView: rootVC)
+        }
     }
     
 }
 
-
+// Helper extension to present UIAlertController asynchronously
+@MainActor
+extension UIViewController {
+    func presentAsync(_ viewControllerToPresent: UIViewController, animated flag: Bool) async {
+        await withCheckedContinuation { continuation in
+            self.present(viewControllerToPresent, animated: flag) {
+                continuation.resume()
+            }
+        }
+    }
+}

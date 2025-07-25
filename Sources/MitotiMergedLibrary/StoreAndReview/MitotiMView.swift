@@ -28,7 +28,11 @@ public struct MitotiMView: View {
                 Image(systemName: "star.fill")
                     .frame(width: 14, height: 14)
                     .modifier(fillButtonSquare(foregroundColor: iconColor, backgroundColor: boxColor, dimension: 8))
-                Button(action: {AppleStore.openRateMe()}) {
+                Button(action: {
+                    Task {
+                        _ = await AppleStore.openRateMe()
+                    }
+                }) {
                     HStack {
                         Text(AppStoreReview.titleRateUs)
                         Spacer()
@@ -68,7 +72,9 @@ public struct MitotiMView: View {
                     .frame(width: 14, height: 14)
                     .modifier(fillButtonSquare(foregroundColor: iconColor, backgroundColor:boxColor, dimension: 8))
                 Button(action: {
-                    AppleStore.openiTunesLink()
+                    Task {
+                        _ = await AppleStore.openiTunesLink()
+                    }
                 }) {
                     HStack {
                         Text("App in Apple Store")
@@ -125,7 +131,11 @@ public struct MitotiMViewBig: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 30, height: 30)
                     .modifier(fillButtonSquare(foregroundColor: .white, backgroundColor: textColor, dimension: 12))
-                Button(action: {AppleStore.openRateMe()}) {
+                Button(action: {
+                    Task {
+                        _ = await AppleStore.openRateMe()
+                    }                    
+                }) {
                     HStack {
                         Text(AppStoreReview.titleRateUs)
                         Spacer()

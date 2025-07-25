@@ -10,8 +10,9 @@ import SwiftUI
 
 /// 18-01-2022
 /// An animatable modifier that is used for observing animations for a given animatable value.
-/// Usato per vedere la fine di una animazione
-public struct AnimationCompletionObserverModifier<Value>: AnimatableModifier where Value: VectorArithmetic {
+/// Usato per vedere la fine di una animazion
+
+public struct AnimationCompletionObserverModifier<Value>: @preconcurrency AnimatableModifier where Value: VectorArithmetic {
 
     /// While animating, SwiftUI changes the old input value to the new target value using this property. This value is set to the old value until the animation completes.
     public var animatableData: Value {
@@ -48,3 +49,4 @@ public struct AnimationCompletionObserverModifier<Value>: AnimatableModifier whe
         return content
     }
 }
+

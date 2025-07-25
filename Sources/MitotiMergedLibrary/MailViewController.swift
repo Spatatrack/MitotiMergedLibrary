@@ -11,6 +11,7 @@ import UIKit
 import MessageUI
 
 
+@MainActor
 public class MailViewController : UIViewController, MFMailComposeViewControllerDelegate {
     
     public override func viewDidLoad() {
@@ -31,10 +32,11 @@ public class MailViewController : UIViewController, MFMailComposeViewControllerD
             // show failure alert
         }
     }
-    public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        
-        controller.dismiss(animated: true)
-        dismiss(animated: false, completion: nil)
+    public nonisolated func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        Task { @MainActor in
+            controller.dismiss(animated: true)
+            dismiss(animated: false, completion: nil)
+        }
     }
     
     public func sendMailToShareAppStoreLink(additionalText: String? = nil) {
@@ -145,3 +147,4 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 */
+

@@ -191,3 +191,36 @@ public struct MyButtonStyleConViewModifier: ViewModifier {
             .shadow(radius: 3)
     }
 }
+
+#Preview {
+    if #available(iOS 15.0, *) {
+        VStack(spacing: 20) {
+            Button("ScaleButtonStyle") {}
+                .buttonStyle(ScaleButtonStyle(percentValue: 0.2))
+            Button("RoundedScaleButton") {}
+                .buttonStyle(RoundedScaleButton(color: .blue))
+            Button("MyPrimitiveButtonStyle") {}
+                .buttonStyle(MyPrimitiveButtonStyle(color: .purple))
+            HStack(spacing: 16) {
+                Image(systemName: "star.fill")
+                    .modifier(fillButtonCircle(foregroundColor: .white, backgroundColor: .orange, dimension: 12))
+                Image(systemName: "star.fill")
+                    .modifier(fillButtonSquare(foregroundColor: .white, backgroundColor: .green, dimension: 12))
+                Image(systemName: "star.fill")
+                    .modifier(fillButtonCircleWide(foregroundColor: .white, backgroundColor: .blue, dimension: 10))
+            }
+            Text("MyButtonStyleConViewModifier")
+                .modifier(MyButtonStyleConViewModifier())
+            // Esempio animazione ButtonStrangeEffect
+            Button("Animato") {}
+                .modifier(ButtonStrangeEffect(offset: 0.5))
+            // Esempio animazione ViewScaleEffect
+            Button("ViewScaleEffect") {}
+                .modifier(ViewScaleEffect(offset: 0.5))
+        }
+        .padding()
+        .background(.gray.opacity(0.2))
+    } else {
+        // Fallback on earlier versions
+    }
+}

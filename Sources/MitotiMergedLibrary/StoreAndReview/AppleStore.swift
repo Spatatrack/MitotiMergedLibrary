@@ -10,61 +10,39 @@ import Foundation
 import UIKit
 import StoreKit
 
-
+@MainActor
 public struct AppleStore {
-    
     
     public static let appleStoreAppLink = "itms-apps://itunes.apple.com/app/id" + MitotiMLibraryNew.idApple //BVS ID "1195231964"
     
     static let URLotherAppMitotiM: URL? = URL(string: "itms-apps://itunes.apple.com/mitotim")//"http://itunes.com/apps/mitotim")
     
-    public static func openiTunesLink() {
-        
+    /// Opens the App Store page for the app asynchronously.
+    public static func openiTunesLink() async {
         let iTunesLink = AppleStore.appleStoreAppLink
         let url: URL = URL(string: iTunesLink)!
-        if (UIApplication.shared.canOpenURL(url)) {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url)
-            }
+        if UIApplication.shared.canOpenURL(url) {
+            await UIApplication.shared.open(url)
         }
     }
     
-    public static func openRateMe() {
-        if #available(iOS 14, *) {
-            if let scene = UIApplication.shared.currentScene {
-                SKStoreReviewController.requestReview(in: scene)
-            }
-        }
-        else if #available( iOS 10.3,*){ //richiesta diretta dall'app
-            SKStoreReviewController.requestReview()
-        }
-        else {
-            let reviewLink = "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=" + MitotiMLibraryNew.idApple + "&pageNumber=0&sortOrdering=1&type=Purple+Software&mt=8"
-            let url: URL = URL(string: reviewLink)!
-            if (UIApplication.shared.canOpenURL(url)) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)                
-            }
+    /// Requests an App Store review asynchronously.
+    public static func openRateMe() async {
+        SKStoreReviewController.requestReview()
+    }
+    
+    /// Opens the other MitotiM app asynchronously.
+    public static func openOtherApp() async {
+        guard let url: URL = URLotherAppMitotiM else { return }
+        if UIApplication.shared.canOpenURL(url) {
+            await UIApplication.shared.open(url)
         }
     }
     
-    public static func openOtherApp() {
-        
-        guard let url: URL = URLotherAppMitotiM else {return}
-        if (UIApplication.shared.canOpenURL(url)) {
-            if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url)
-            }
-        }
-    }
-    
-    public static func goToAppSettings() {
+    /// Opens the app's settings asynchronously.
+    public static func goToAppSettings() async {
         if let settings = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(settings) {
-            UIApplication.shared.open(settings)
+            await UIApplication.shared.open(settings)
         }
     }
 }
-

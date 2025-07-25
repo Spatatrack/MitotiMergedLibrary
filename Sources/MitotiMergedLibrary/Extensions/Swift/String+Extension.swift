@@ -148,17 +148,7 @@ public extension String {
 
 ///CAPIRE LA DIMENSIONE DI UN TESTO
 public extension String {
-    var stringWidth: CGFloat {
-        let constraintRect = CGSize(width: UIScreen.main.bounds.width / 1.6, height: .greatestFiniteMagnitude)
-        let boundingBox = self.trimmingCharacters(in: .whitespacesAndNewlines).boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)], context: nil)
-        return boundingBox.width + 20
-    }
-    
-    var stringHeight: CGFloat {
-        let constraintRect = CGSize(width: UIScreen.main.bounds.width, height: .greatestFiniteMagnitude)
-        let boundingBox = self.trimmingCharacters(in: .whitespacesAndNewlines).boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)], context: nil)
-        return boundingBox.height + 20
-    }
+    // Removed stringWidth and stringHeight properties, moved to @MainActor extension below
 }
 
 //18-01-2020 mi sembra uguale a 15-4-2020
@@ -209,5 +199,20 @@ public extension String {
 public extension Collection where Iterator.Element == String {
     var dates: [Date] {
         return compactMap{$0.detectDates}.flatMap{$0}
+    }
+}
+
+/// Properties requiring UIKit must be accessed on the main actor (main thread)
+@MainActor
+public extension String {
+    var stringWidth: CGFloat {
+        let constraintRect = CGSize(width: UIScreen.main.bounds.width / 1.6, height: .greatestFiniteMagnitude)
+        let boundingBox = self.trimmingCharacters(in: .whitespacesAndNewlines).boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)], context: nil)
+        return boundingBox.width + 20
+    }
+    var stringHeight: CGFloat {
+        let constraintRect = CGSize(width: UIScreen.main.bounds.width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.trimmingCharacters(in: .whitespacesAndNewlines).boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)], context: nil)
+        return boundingBox.height + 20
     }
 }

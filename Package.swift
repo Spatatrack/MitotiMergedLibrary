@@ -7,9 +7,7 @@ let package = Package(
     name: "MitotiMergedLibrary",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v13),
-        .macOS(.v10_15),
-        .tvOS(.v13)
+        .iOS(.v18) // 🔥 iOS 18+
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
