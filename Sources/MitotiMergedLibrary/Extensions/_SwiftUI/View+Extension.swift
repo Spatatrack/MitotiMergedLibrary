@@ -399,3 +399,10 @@ public extension View {
         return modifier(AnimationCompletionObserverModifier(observedValue: value, completion: completion))
     }
 }
+
+public extension View {
+    ///estende al massimo il frame della view
+    func fullFrame() -> some View {
+        return frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
