@@ -14,7 +14,7 @@ public class pippoClass {
 //LANGUAGE
 public struct PippoStruct {
 //    public init() {
-//
+// pippo
 //    }
     
     public static let staticVeriable: String = NSLocalizedString("RATE_REMEMBER_BUTTON", tableName: "MTMLocalizable", bundle: .module, comment: "")
