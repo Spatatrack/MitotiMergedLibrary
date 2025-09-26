@@ -9,33 +9,12 @@ import SwiftUI
 import UIKit
 
 
-struct Ping: View {
-    @State var isPresented: Bool = false
-    var body: some View {
-        VStack {
-            DemoConfetti()
-//            ZStack {
-//                Button("Show") {
-//                    self.isPresented.toggle()
-//                }
-//                CelebrationOverlay(isPresented: $isPresented)
-//            }
-//            ZStack {
-//                // ... UI
-//            }
-//            .ignoresSafeArea()
-//            .overlay(
-//                ConfettiCannonOverlay(quantity: 300, duration: 0.7) // “boom” + caduta naturale
-//            )
-        }
-    }
-}
-#Preview { Ping() }
-struct DemoConfetti: View {
+#Preview { ConfettiView() }
+public struct ConfettiView: View {
     @State private var celebrate = false
     @State private var useEmoji = false
 
-    var body: some View {
+    public var body: some View {
         ZStack {
             if celebrate {
                 ConfettiOverlay(trigger: celebrate,
@@ -48,39 +27,12 @@ struct DemoConfetti: View {
                 
                 
             }
-//            ConfettiOverlay(trigger: celebrate,
-//                                simbolScale: 0.2,
-//                            useEmoji: !useEmoji,
-//                            quantity: 500,
-//                            duration: 2.2)
-//            .id(celebrate)
-//                .frame(width: 10, height: 10)
-//            }
-            VStack(spacing: 20) {
-                Button("Confetti Symbols") {
-                    useEmoji = false
-                    celebrate.toggle()
-                }
-                .buttonStyle(.borderedProminent)
-
-                Button("Confetti Emoji") {
-                    useEmoji = true
-                    celebrate.toggle()
-                }
-                .buttonStyle(.borderedProminent)
-            }
         }
-//        .overlay {
-//            ConfettiOverlay(trigger: celebrate,
-//                                simbolScale: 0.1,
-//                            useEmoji: useEmoji,
-//                            quantity: 50,
-//                            duration: 0.1)
-////            .frame(width: 10, height: 10)
-//        }
     }
 }
-struct ConfettiOverlay: UIViewRepresentable {
+
+///cannonata di coriandoli confetti
+public struct ConfettiOverlay: UIViewRepresentable {
     var trigger: Bool          // ogni volta che passa true → riparte
     var simbolScale: Double = 0.15  //grandezza oggettini
     var useEmoji: Bool = false // true = emoji 🎉⭐️❤️, false = SF Symbols
@@ -89,11 +41,11 @@ struct ConfettiOverlay: UIViewRepresentable {
     var palette: [UIColor] = [.systemRed, .systemBlue, .systemGreen,
                               .systemOrange, .systemPink, .systemYellow, .systemPurple]
 
-    func makeUIView(context: Context) -> ConfettiView {
+    public func makeUIView(context: Context) -> ConfettiView {
         let v = ConfettiView()
         return v
     }
-    func updateUIView(_ uiView: ConfettiView, context: Context) {
+    public func updateUIView(_ uiView: ConfettiView, context: Context) {
         if trigger {
             uiView.fire(simbolScale: simbolScale,quantity: quantity, duration: duration,
                         palette: palette, useEmoji: useEmoji)
@@ -101,7 +53,7 @@ struct ConfettiOverlay: UIViewRepresentable {
     }
 
     // MARK: - Inner UIView
-    final class ConfettiView: UIView {
+    final public class ConfettiView: UIView {
         private var emitter = CAEmitterLayer()
 
         override init(frame: CGRect) {
@@ -113,7 +65,7 @@ struct ConfettiOverlay: UIViewRepresentable {
         }
         required init?(coder: NSCoder) { fatalError() }
 
-        override func layoutSubviews() {
+        public override func layoutSubviews() {
             super.layoutSubviews()
             emitter.emitterPosition = CGPoint(x: bounds.midX, y: -4)
             emitter.emitterSize = CGSize(width: bounds.width, height: 2)

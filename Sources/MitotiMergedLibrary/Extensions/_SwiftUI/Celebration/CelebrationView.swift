@@ -10,7 +10,7 @@ import AudioToolbox
 
 /// Container: Sunshine dietro, Content al centro, Confetti sopra.
 /// confettiTrigger: -1 = infinito, 0 = stop, >0 = durata in secondi
-struct CelebrationContainer<Content: View>: View {
+public struct CelebrationContainer<Content: View>: View {
     // Confetti
    
     var confettiQuantity: Int = 30
@@ -29,13 +29,13 @@ struct CelebrationContainer<Content: View>: View {
     // Content
     @ViewBuilder var content: () -> Content
     @State private var mode: Double = 0
-    var body: some View {
+    public var body: some View {
         GeometryReader { geo in
             let max = max(geo.size.width, geo.size.height) * 1.3
             ZStack {
                 // BACKGROUND: Sunshine
                 
-                
+                //spara confetti in alto
                 ConfettiOverlay(trigger: true,
                                 simbolScale: 0.1,
                                 useEmoji: true,

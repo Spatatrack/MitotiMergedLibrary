@@ -8,21 +8,22 @@
 import SwiftUI
 import UIKit
 
-struct FlutterConfettiOverlay: UIViewRepresentable {
+///Coriandoli confetti fluttuanti sullo schermo
+public struct FlutterConfettiOverlay: UIViewRepresentable {
     /// -1 = infinito, 0 = stop, >0 = durata in secondi
     var trigger: Double
     var quantity: Int = 500
     var palette: [UIColor] = [.systemRed, .systemBlue, .systemGreen,
                               .systemOrange, .systemPink, .systemYellow, .systemPurple]
 
-    func makeUIView(context: Context) -> FlutterView { FlutterView() }
+    public func makeUIView(context: Context) -> FlutterView { FlutterView() }
 
-    func updateUIView(_ uiView: FlutterView, context: Context) {
+    public func updateUIView(_ uiView: FlutterView, context: Context) {
         uiView.update(trigger: trigger, quantity: quantity, palette: palette)
     }
 
     // MARK: - UIView backend
-    final class FlutterView: UIView {
+    final public class FlutterView: UIView {
         private let emitter = CAEmitterLayer()
         private var isConfigured = false
         private var stopWorkItem: DispatchWorkItem?
@@ -38,7 +39,7 @@ struct FlutterConfettiOverlay: UIViewRepresentable {
         }
         required init?(coder: NSCoder) { fatalError() }
 
-        override func layoutSubviews() {
+        public override func layoutSubviews() {
             super.layoutSubviews()
             // “Pioggia dal soffitto”: linea in alto, verso il basso
             emitter.emitterPosition = CGPoint(x: bounds.midX, y: -6)
