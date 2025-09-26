@@ -10,11 +10,25 @@ import UIKit
 
 ///Coriandoli confetti fluttuanti sullo schermo
 public struct FlutterConfettiOverlay: UIViewRepresentable {
-    /// -1 = infinito, 0 = stop, >0 = durata in secondi
-    var trigger: Double
-    var quantity: Int = 500
-    var palette: [UIColor] = [.systemRed, .systemBlue, .systemGreen,
-                              .systemOrange, .systemPink, .systemYellow, .systemPurple]
+    public var trigger: Double
+    public var quantity: Int
+    public var palette: [UIColor]
+
+    /// Crea un overlay di coriandoli flutter.
+    /// - Parameters:
+    ///   - trigger: -1 = infinito, 0 = stop, >0 = durata in secondi
+    ///   - quantity: quantità indicativa di coriandoli emessi
+    ///   - palette: colori dei coriandoli
+    public init(
+        trigger: Double,
+        quantity: Int = 500,
+        palette: [UIColor] = [.systemRed, .systemBlue, .systemGreen,
+                               .systemOrange, .systemPink, .systemYellow, .systemPurple]
+    ) {
+        self.trigger = trigger
+        self.quantity = quantity
+        self.palette = palette
+    }
 
     public func makeUIView(context: Context) -> FlutterView { FlutterView() }
 
@@ -28,7 +42,7 @@ public struct FlutterConfettiOverlay: UIViewRepresentable {
         private var isConfigured = false
         private var stopWorkItem: DispatchWorkItem?
 
-        override init(frame: CGRect) {
+        public override init(frame: CGRect) {
             super.init(frame: frame)
             isUserInteractionEnabled = false
             backgroundColor = .clear
@@ -37,7 +51,7 @@ public struct FlutterConfettiOverlay: UIViewRepresentable {
             emitter.renderMode = .unordered
             emitter.preservesDepth = true     // abilita Z per “3D-like”
         }
-        required init?(coder: NSCoder) { fatalError() }
+        public required init?(coder: NSCoder) { fatalError() }
 
         public override func layoutSubviews() {
             super.layoutSubviews()
