@@ -28,6 +28,33 @@ public struct CelebrationContainer<Content: View>: View {
    
     // Content
     @ViewBuilder var content: () -> Content
+    
+    public init(
+        confettiQuantity: Int = 30,
+        confettiPalette: [UIColor] = [.systemPink, .systemYellow, .systemGreen, .systemTeal, .systemPurple, .systemOrange],
+        sunRays: Int = 36,
+        sunDuty: Double = 0.48,
+        sunInner: Color = .white,
+        sunOuter: Color = .yellow,
+        sunOuterOpacity: Double = 0.75,
+        sunGlowRadius: CGFloat = 0.18,
+        sunRotates: Bool = true,
+        sunPeriod: Double = 40,
+        @ViewBuilder content: @escaping () -> Content
+    ) {
+        self.confettiQuantity = confettiQuantity
+        self.confettiPalette = confettiPalette
+        self.sunRays = sunRays
+        self.sunDuty = sunDuty
+        self.sunInner = sunInner
+        self.sunOuter = sunOuter
+        self.sunOuterOpacity = sunOuterOpacity
+        self.sunGlowRadius = sunGlowRadius
+        self.sunRotates = sunRotates
+        self.sunPeriod = sunPeriod
+        self.content = content
+    }
+    
     @State private var mode: Double = 0
     public var body: some View {
         GeometryReader { geo in
@@ -143,3 +170,4 @@ struct CelebrationView: View {
         .padding(.bottom, 60)
     }
 }
+
