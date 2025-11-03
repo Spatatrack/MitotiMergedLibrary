@@ -11,90 +11,85 @@ import SwiftUI
 
 public struct MitotiMView: View {
     
-    public init (boxColor: Color, iconColor: Color) {
-        self.boxColor = boxColor
-        self.iconColor = iconColor
-    }
+    public init () {}
     
-    
-    public var boxColor: Color
-    public var iconColor: Color
     @State private var isShowingMail = false
     
     public var body: some View {
                     
-        VStack {
-            HStack {
-                Image(systemName: "star.fill")
-                    .frame(width: 14, height: 14)
-                    .modifier(fillButtonSquare(foregroundColor: iconColor, backgroundColor: boxColor, dimension: 8))
-                Button(action: {
-                    Task {
-                        _ = await AppleStore.openRateMe()
-                    }
-                }) {
-                    HStack {
-                        Text(AppStoreReview.titleRateUs)
-                        Spacer()
-                        Text(AppStoreReview.messageRateUs)
-                            .foregroundColor(.gray)
-                            .font(.caption)
-                        Image(systemName: "chevron.right")
-                    }
-                    
+        Group {
+            Button {
+                Task {
+                    _ = await AppleStore.openRateMe()
                 }
-                .contentShape(Rectangle())                
-            }
-            .padding(.top, 6)
-            HStack {
-                Image(systemName: "envelope.fill")
-                    .frame(width: 14, height: 14)
-                    .modifier(fillButtonSquare(foregroundColor: iconColor, backgroundColor:boxColor, dimension: 8))
-                Button(action: {
-                        self.isShowingMail.toggle()
-                    
-                }) {
+            } label: {
+                Label {
                     HStack {
-                        Text(NSLocalizedString("Contact us", tableName: "MTMLocalizable", bundle: .module, comment: "settings - MitotiM: contattai"))
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(AppStoreReview.titleRateUs)
+                            Text(AppStoreReview.messageRateUs)
+                                .foregroundColor(.gray)
+                                .font(.caption)
+                        }
                         Spacer()
-                        Text(NSLocalizedString("tips or issues", tableName: "MTMLocalizable", bundle: .module, comment: "settings - MitotiM: contattai"))
-                            .foregroundColor(.gray)
-                            .font(.caption)
                         Image(systemName: "chevron.right")
+                            .foregroundColor(.secondary)
                     }
+                    .padding(.vertical, 6)
+                } icon: {
+                    Image(systemName: "star.fill")
+                        .foregroundStyle(.yellow)
+                        .frame(width: 14, height: 14)
                 }
-                .contentShape(Rectangle())
-                
             }
-            .padding(.top, 6)
-            HStack {
-                Image(systemName: "apps.iphone")
-                    .frame(width: 14, height: 14)
-                    .modifier(fillButtonSquare(foregroundColor: iconColor, backgroundColor:boxColor, dimension: 8))
-                Button(action: {
-                    Task {
-                        _ = await AppleStore.openiTunesLink()
+            .buttonStyle(.plain)
+            .contentShape(Rectangle())
+            Button {
+                self.isShowingMail.toggle()
+            } label: {
+                Label {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(NSLocalizedString("Contact us", tableName: "MTMLocalizable", bundle: .module, comment: "settings - MitotiM: contattai"))
+                            Text(NSLocalizedString("tips or issues", tableName: "MTMLocalizable", bundle: .module, comment: "settings - MitotiM: contattai"))
+                                .foregroundColor(.gray)
+                                .font(.caption)
+                        }
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.secondary)
                     }
-                }) {
+                    .padding(.vertical, 6)
+                } icon: {
+                    Image(systemName: "envelope.fill")
+                        .foregroundStyle(.blue)
+                        .frame(width: 14, height: 14)
+                }
+            }
+            .buttonStyle(.plain)
+            .contentShape(Rectangle())
+            Button {
+                Task {
+                    _ = await AppleStore.openiTunesLink()
+                }
+            } label: {
+                Label {
                     HStack {
                         Text("App in Apple Store")
                         Spacer()
                         Image(systemName: "chevron.right")
+                            .foregroundColor(.secondary)
                     }
+                    .padding(.vertical, 6)
+                } icon: {
+                    Image(systemName: "apps.iphone")
+                        .foregroundStyle(.green)
+                        .frame(width: 14, height: 14)
                 }
-                .contentShape(Rectangle())
-//                if #available(iOS 14.0, *) {
-//                    Link("MitotiM app", destination: AppleStore.URLotherAppMitotiM!)
-//                        .contentShape(Rectangle())
-//                } else {
-//                    // Fallback on earlier versions
-//                }
-               
-            }           
-            .padding(.top, 6)
+            }
+            .buttonStyle(.plain)
+            .contentShape(Rectangle())
         }
-        .padding()
-        .foregroundColor(boxColor)
         .sheet(isPresented: self.$isShowingMail, content: {
             MailViewRepresentable(setToRecipients: [MitotiMLibraryNew.mailTo], setSubject: MitotiMLibraryNew.appName, setMessageBody: MitotiMLibraryNew.messageBody, result: .constant(.none))
         })
@@ -122,59 +117,60 @@ public struct MitotiMViewBig: View {
     
     public var body: some View {
                     
-        VStack {
-            Text("MitotiM")
-                .font(.largeTitle)
-            HStack {
-                Image(systemName: "star.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 30, height: 30)
-                    .modifier(fillButtonSquare(foregroundColor: .white, backgroundColor: textColor, dimension: 12))
-                Button(action: {
-                    Task {
-                        _ = await AppleStore.openRateMe()
-                    }                    
-                }) {
-                    HStack {
-                        Text(AppStoreReview.titleRateUs)
-                        Spacer()
-                        Text(AppStoreReview.messageRateUs)
-                            .foregroundColor(.gray)
-                            .font(.caption)
-                        Image(systemName: "chevron.right")
-                    }
-                    
+        Group {
+            Button {
+                Task {
+                    _ = await AppleStore.openRateMe()
                 }
-                .contentShape(Rectangle())
-            }
-            .padding(.top, 6)
-            Spacer()
-                .frame(height: 20)
-            HStack {
-                Image(systemName: "envelope.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 30, height: 30)
-                    .modifier(fillButtonSquare(foregroundColor: .white, backgroundColor:textColor, dimension: 12))
-                Button(action: {
-                        self.isShowingMail.toggle()
-                    
-                }) {
+            } label: {
+                Label {
                     HStack {
-                        Text(NSLocalizedString("Contact us", tableName: "MTMLocalizable", bundle: .module, comment: "settings - MitotiM: contattai"))
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(AppStoreReview.titleRateUs)
+                            Text(AppStoreReview.messageRateUs)
+                                .foregroundColor(.gray)
+                                .font(.caption)
+                        }
                         Spacer()
-                        Text(NSLocalizedString("tips or issues", tableName: "MTMLocalizable", bundle: .module, comment: "settings - MitotiM: contattai"))
-                            .foregroundColor(.gray)
-                            .font(.caption)
                         Image(systemName: "chevron.right")
+                            .foregroundColor(.secondary)
                     }
+                    .padding(.vertical, 6)
+                } icon: {
+                    Image(systemName: "star.fill")
+                        .padding(.horizontal)
+                        .font(.system(size: 30))
+                        .foregroundStyle(.yellow)
                 }
-                .contentShape(Rectangle())
-                
             }
+            .buttonStyle(.plain)
+            .contentShape(Rectangle())
             .padding(.top, 6)
-            Spacer()
+            Button {
+                self.isShowingMail.toggle()
+            } label: {
+                Label {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(NSLocalizedString("Contact us", tableName: "MTMLocalizable", bundle: .module, comment: "settings - MitotiM: contattai"))
+                            Text(NSLocalizedString("tips or issues", tableName: "MTMLocalizable", bundle: .module, comment: "settings - MitotiM: contattai"))
+                                .foregroundColor(.gray)
+                                .font(.caption)
+                        }
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.vertical, 6)
+                } icon: {
+                    Image(systemName: "envelope.fill")
+                        .font(.system(size: 30))
+                        .foregroundStyle(.blue)
+                }
+            }
+            .buttonStyle(.plain)
+            .contentShape(Rectangle())
+            .padding(.top, 6)
         }
         .padding()
         .foregroundColor(textColor)
@@ -189,6 +185,17 @@ public struct MitotiMViewBig: View {
 
 struct MitotiMViewBig_Previews: PreviewProvider {
     static var previews: some View {
-        MitotiMViewBig(textColor: .black)
+        List {
+            MitotiMViewBig(textColor: .black)
+        }
     }
 }
+
+struct MitotiMView_Previews: PreviewProvider {
+    static var previews: some View {
+        List {
+            MitotiMView()
+        }
+    }
+}
+
