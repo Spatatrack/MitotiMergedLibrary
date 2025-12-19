@@ -85,8 +85,7 @@ public struct CelebrationContainer<Content: View>: View {
                 .zIndex(2)
             }
             .task {
-                mode = -1
-                AudioServicesPlaySystemSound(SystemSoundID(1322)) 
+                mode = -1            
             }
             .background {
                 SunshineBurstView(
