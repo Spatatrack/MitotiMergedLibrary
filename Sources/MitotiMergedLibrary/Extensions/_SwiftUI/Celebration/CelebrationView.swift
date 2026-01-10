@@ -55,7 +55,7 @@ public struct CelebrationContainer<Content: View>: View {
         self.content = content
     }
     
-    @State private var mode: Double = 0
+//    @State private var mode: Double = 0
     public var body: some View {
         GeometryReader { geo in
             let max = max(geo.size.width, geo.size.height) * 1.3
@@ -66,8 +66,8 @@ public struct CelebrationContainer<Content: View>: View {
                 ConfettiOverlay(trigger: true,
                                 simbolScale: 0.1,
                                 useEmoji: true,
-                                quantity: 1550,
-                                duration: 2)
+                                quantity: 100,
+                                duration: 0.1)
                 .id(UUID())
                 .frame(width: 10, height: 10)
                 .zIndex(0)
@@ -77,16 +77,16 @@ public struct CelebrationContainer<Content: View>: View {
                 
                 
                 // OVERLAY: Confetti sopra tutto
-                FlutterConfettiOverlay(trigger: mode,
+                FlutterConfettiOverlay(trigger: -1,
                                        quantity: confettiQuantity,
                                        palette: confettiPalette)
                 .ignoresSafeArea()
                 .allowsHitTesting(false)
                 .zIndex(2)
             }
-            .task {
-                mode = -1            
-            }
+//            .task {
+//                mode = -1            
+//            }
             .background {
                 SunshineBurstView(
                     rays: sunRays,
